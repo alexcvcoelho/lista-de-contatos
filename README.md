@@ -1,2 +1,2 @@
-# lista-de-contatos
-Sistema de lista de contatos criado no curso de Ruby on 
+# Lista de Contatos em RoR
+Aplicação desenvolvida em Ruby on Rails utilizando gems fakers e geradores de texto para simular dados.
