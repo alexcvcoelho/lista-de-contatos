@@ -31,6 +31,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'rails-i18n', '~> 5.0.0' # For 5.0.x and 5.1.x
 # O Lero-lero Generator é uma ferramenta capaz de gerar frases que 'falam' muita coisa mas que não tem conteúdo algum. 
 gem 'lerolero_generator'
+# Formularios jquery
+gem 'cocoon'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -44,6 +46,8 @@ group :development, :test do
   gem 'byebug', platform: :mri
   # Dados Fake
   gem "faker"
+  # Console
+  gem "pry-rails"
 end
 
 group :development do
