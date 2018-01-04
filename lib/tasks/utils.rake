@@ -2,7 +2,7 @@ namespace :utils do
   desc "Popular o banco de dados."
   task seed: :environment do
     puts "Tipos de contatos (contacts)"
-    10.times do |i|
+    500.times do |i|
         Contact.create!(name: Faker::Name.name, 
                         email: Faker::Internet.email, 
                         rmk: LeroleroGenerator.sentence([1,2,3,4,5].sample),
