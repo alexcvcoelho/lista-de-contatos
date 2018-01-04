@@ -33,8 +33,10 @@ gem 'rails-i18n', '~> 5.0.0' # For 5.0.x and 5.1.x
 gem 'lerolero_generator'
 # Formularios jquery
 gem 'cocoon'
-#A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Ruby webapps
+# A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for Ruby webapps
 gem 'kaminari'
+# Tradução da paginação
+gem 'kaminari-i18n'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
