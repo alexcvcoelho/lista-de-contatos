@@ -1,61 +1,85 @@
-<%= form_for(contact) do |f| %>
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+<div class="container-fluid">
+  <%= form_for(contact) do |f| %>
+  <div class="row">
+
+    <div class="col-md-5">
+      <div class="form-group">
+        <%= f.label :kind_id %>
+        <%= collection_select(:contact, :kind_id, @options_select, :id, :description,{}, {:class => 'form-control'}) %>
+      </div>
+    </div>
+    
   </div>
 
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'form-control' %>
+      </div>
+    </div>  
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.text_field :email, class: 'form-control' %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :kind_id %>
-    <%= collection_select(:contact, :kind_id, @options_select, :id, :description) %>
-  </div>
+    <%= f.fields_for :address do |address_fields| %>
+    <div class="row">
 
-  <%= f.fields_for :address do |address_fields| %>
-    <div class="field">
-      <%= address_fields.label :street %>
-      <%= address_fields.text_field :street %>
+      <div class="col-md-4">    
+        <div class="form-group">
+          <%= address_fields.label :street %>
+          <%= address_fields.text_field :street, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= address_fields.label :city %>
+          <%= address_fields.text_field :city, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= address_fields.label :state %>
+          <%= address_fields.select :state, options_for_states(@contact.address.state), {}, {class: 'form-control'} %>
+        </div>
+      </div>
+
+    </div>
+    <% end %>
+
+    <div id="phones">
+      <%= link_to_add_association('[Adicionar Telefone]', f, :phones) %>
+      <%= f.fields_for :phones do |phone_fields| %>
+        <%= render partial: "phone_fields", locals: {f: phone_fields} %>
+      <% end %>
     </div>
 
-    <div class="field">
-      <%= address_fields.label :city %>
-      <%= address_fields.text_field :city %>
+    <div class="form-group">
+      <%= f.label :rmk %>
+      <%= f.text_area :rmk, class: 'form-control' %>
     </div>
 
-    <div class="field">
-      <%= address_fields.label :state %>
-      <%= address_fields.select :state, options_for_states(@contact.address.state) %>
+    <div class="actions">
+      <%= f.submit(class: 'btn btn-success') %>
     </div>
+
+    <% if contact.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= "#{pluralize(contact.errors.count, 'erro ocorreu', 'erros ocorreram')} #{t('messages.errors')}" %></h2>
+
+        <ul>
+        <% contact.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
   <% end %>
-
-  <div id="phones">
-    <%= link_to_add_association('[Adicionar Telefone]', f, :phones) %>
-    <%= f.fields_for :phones do |phone_fields| %>
-      <%= render partial: "phone_fields", locals: {f: phone_fields} %>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :rmk %>
-    <%= f.text_area :rmk %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-
-  <% if contact.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= "#{pluralize(contact.errors.count, 'erro ocorreu', 'erros ocorreram')} #{t('messages.errors')}" %></h2>
-
-    <ul>
-    <% contact.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-<% end %>
+</div>
