@@ -46,6 +46,7 @@ GEM
       autoprefixer-rails (>= 6.0.3)
       popper_js (>= 1.12.3, < 2)
       sass (>= 3.5.2)
+    bower-rails (0.11.0)
     builder (3.2.3)
     byebug (9.1.0)
     cocoon (1.2.11)
@@ -195,6 +196,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap (~> 4.0.0.alpha3)
+  bower-rails (~> 0.11.0)
   byebug
   cocoon
   coffee-rails (~> 4.2)
